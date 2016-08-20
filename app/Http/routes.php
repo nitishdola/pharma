@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+
+Route::get('/', ['uses' => 'HomeController@index', 'as' => 'dashboard', 'middleware' => 'auth' ]);
 
 Route::auth();
 
