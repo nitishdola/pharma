@@ -121,16 +121,14 @@
 			</div>
 		</div>
 		<div class="row row-bg">
-			<div class="row">
-				<div class="col-lg-12">
-					@if(Session::has('message'))
-                    <div class="alert {{ Session::get('alert-class', 'alert-danger') }}">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        {!! Session::get('message') !!}
-                    </div>
-                    @endif
+			<div class="col-lg-12">
+				@if(Session::has('message'))
+                <div class="alert {{ Session::get('alert-class', 'alert-danger') }}">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {!! Session::get('message') !!}
                 </div>
-			</div>
+                @endif
+            </div>
 			@yield('content')
 		</div>
 	</div>
