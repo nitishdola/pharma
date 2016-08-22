@@ -21,7 +21,7 @@
 		<!-- /Sidebar Toggler -->
 
 		<!-- Top Left Menu -->
-		<ul class="nav navbar-nav navbar-left hidden-xs hidden-sm">
+		<!-- <ul class="nav navbar-nav navbar-left hidden-xs hidden-sm">
 			<li>
 				<a href="#">
 					Dashboard
@@ -39,20 +39,19 @@
 					<li><a href="#"><i class="icon-tasks"></i> Example #3</a></li>
 				</ul>
 			</li>
-		</ul>
+		</ul> -->
 		<!-- /Top Left Menu -->
 
 		<!-- Top Right Menu -->
 		<ul class="nav navbar-nav navbar-right">
 			<!-- User Login Dropdown -->
 			<li class="dropdown user">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<!--<img alt="" src="assets/img/avatar1_small.jpg" />-->
+				<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<i class="icon-male"></i>
 					<span class="username">ADMIN</span>
 					<i class="icon-caret-down small"></i>
 				</a>
-					<li class="divider"></li>
+					<li class="divider"></li> -->
 					<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
 				</ul>
 			</li>

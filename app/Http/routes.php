@@ -17,3 +17,16 @@ Route::get('/', ['uses' => 'HomeController@index', 'as' => 'dashboard', 'middlew
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix'=>'company'], function() {
+    Route::get('/create', [
+        'as' => 'company.create',
+        'middleware' => ['auth'],
+        'uses' => 'CompaniesController@create'
+    ]);
+    Route::post('/store', [
+        'as' => 'company.store',
+        'middleware' => ['auth'],
+        'uses' => 'CompaniesController@store'
+    ]);
+});
