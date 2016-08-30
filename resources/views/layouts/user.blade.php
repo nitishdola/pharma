@@ -110,17 +110,7 @@
 @include('layouts.sidebar')
 <div id="content">
 	<div class="container">
-		<div class="crumbs">
-			<ul id="breadcrumbs" class="breadcrumb">
-				@yield('breadcumb')
-			</ul>
-		</div>
-		<div class="page-header">
-			<div class="page-title">
-				@yield('page_title')
-			</div>
-		</div>
-		<div class="row row-bg">
+		<div class="row">
 			<div class="col-lg-12">
 				@if(Session::has('message'))
                 <div class="alert {{ Session::get('alert-class', 'alert-danger') }}">
@@ -129,6 +119,8 @@
                 </div>
                 @endif
             </div>
+        </div>
+        <div class="row">
 			@yield('content')
 		</div>
 	</div>

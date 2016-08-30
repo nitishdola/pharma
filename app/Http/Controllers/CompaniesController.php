@@ -12,7 +12,7 @@ use App\Company;
 class CompaniesController extends Controller
 {
     public function create() {
-	return view('master.companies.create');
+	   return view('master.companies.create');
     }
     public function store(Request $request) {
     	$validator = Validator::make($data = $request->all(), Company::$rules);

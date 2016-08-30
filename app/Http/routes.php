@@ -30,3 +30,16 @@ Route::group(['prefix'=>'company'], function() {
         'uses' => 'CompaniesController@store'
     ]);
 });
+
+Route::group(['prefix'=>'product'], function() {
+    Route::get('/create', [
+        'as' => 'product.create',
+        'middleware' => ['auth'],
+        'uses' => 'ProductsController@create'
+    ]);
+    Route::post('/store', [
+        'as' => 'product.store',
+        'middleware' => ['auth'],
+        'uses' => 'ProductsController@store'
+    ]);
+});
