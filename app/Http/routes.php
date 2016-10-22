@@ -30,3 +30,34 @@ Route::group(['prefix'=>'company'], function() {
         'uses' => 'CompaniesController@store'
     ]);
 });
+
+
+Route::group(['prefix'=>'product'], function() {
+    Route::get('/add', [
+        'as' => 'product.create',
+        'middleware' => ['auth'],
+        'uses' => 'ProductsController@create'
+    ]);
+    Route::post('/store', [
+        'as' => 'product.store',
+        'middleware' => ['auth'],
+        'uses' => 'ProductsController@store'
+    ]);
+
+    Route::get('/view-all', [
+        'as' => 'product.index',
+        'middleware' => ['auth'],
+        'uses' => 'ProductsController@index'
+    ]);
+
+    Route::get('/edit/{num}', [
+        'as' => 'product.edit',
+        'middleware' => ['auth'],
+        'uses' => 'ProductsController@edit'
+    ]);
+    Route::post('/update/{num}', [
+        'as' => 'product.update',
+        'middleware' => ['auth'],
+        'uses' => 'ProductsController@update'
+    ]);
+});
