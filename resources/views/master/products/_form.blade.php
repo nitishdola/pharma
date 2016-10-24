@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="form-group {{ $errors->has('company_id') ? 'has-error' : ''}}">
   {!! Form::label('company_id', 'Select Company', array('class' => 'col-md-3 control-label')) !!}
   <div class="col-md-9">
@@ -6,12 +7,15 @@
   {!! $errors->first('company_id', '<span class="help-inline">:message</span>') !!}
 </div>
 
+=======
+>>>>>>> a6359495d6e02978b5722dc597581fdfd35df2c7
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
   {!! Form::label('name', 'Product Name', array('class' => 'col-md-3 control-label')) !!}
   <div class="col-md-9">
     {!! Form::text('name', null, ['class' => 'form-control required', 'id' => 'name', 'placeholder' => 'Product Name', 'autocomplete' => 'off', 'required' => 'true']) !!}
   </div>
   {!! $errors->first('name', '<span class="help-inline">:message</span>') !!}
+<<<<<<< HEAD
 </div>
 
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
@@ -44,4 +48,6 @@
     {!! Form::number('stock_in_hand', null, ['class' => 'form-control required', 'id' => 'stock_in_hand', 'placeholder' => 'Stock in hand', 'autocomplete' => 'off', 'required' => 'true']) !!}
   </div>
   {!! $errors->first('stock_in_hand', '<span class="help-inline">:message</span>') !!}
+=======
+>>>>>>> a6359495d6e02978b5722dc597581fdfd35df2c7
 </div>
