@@ -61,3 +61,17 @@ Route::group(['prefix'=>'product'], function() {
         'uses' => 'ProductsController@update'
     ]);
 });
+
+
+Route::group(['prefix'=>'stock'], function() {
+    Route::get('/receive', [
+        'as' => 'stock.receive',
+        'middleware' => ['auth'],
+        'uses' => 'StockInController@receive'
+    ]);
+    Route::post('/store', [
+        'as' => 'stock.store',
+        'middleware' => ['auth'],
+        'uses' => 'StockInController@store'
+    ]);
+});

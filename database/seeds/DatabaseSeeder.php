@@ -11,10 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //DB::table('users')->insert(['name' => 'Pharma Admin', 'username' => 'admin', 'password' => bcrypt('password#')]);
+        DB::table('users')->insert(['name' => 'Pharma Admin', 'username' => 'admin', 'password' => bcrypt('password#')]);
 
-        DB::table('companies')->insert(['name' => 'Arion Healthcare']);
-        DB::table('companies')->insert(['name' => 'Oval Organic']);
-        DB::table('companies')->insert(['name' => 'SAC Pharma']);
+        // DB::table('companies')->insert(['name' => 'Arion Healthcare']);
+        // DB::table('companies')->insert(['name' => 'Oval Organic']);
+        // DB::table('companies')->insert(['name' => 'SAC Pharma']);
     }
 }

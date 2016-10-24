@@ -35,6 +35,7 @@
 
 	<!--=== JavaScript ===-->
 
+
 	<script type="text/javascript" src="{{ asset('assets/js/libs/jquery-1.10.2.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js') }}"></script>
 
@@ -98,6 +99,8 @@
 		App.init(); // Init layout and core plugins
 		Plugins.init(); // Init all plugins
 		FormComponents.init(); // Init all form-specific plugins
+
+		console.log('sdfsdf');
 	});
 	</script>
 	@yield('page_script')
@@ -110,21 +113,17 @@
 @include('layouts.sidebar')
 <div id="content">
 	<div class="container">
-<<<<<<< HEAD
-		<div class="crumbs">
+		<!-- <div class="crumbs">
 			<ul id="breadcrumbs" class="breadcrumb">
 				@yield('breadcumb')
 			</ul>
-		</div>
-		<div class="page-header">
+		</div> -->
+		<!-- <div class="page-header">
 			<div class="page-title">
 				<h3>@yield('page_title')</h3>
 			</div>
-		</div>
+		</div> -->
 		<div class="row row-bg">
-=======
-		<div class="row">
->>>>>>> a6359495d6e02978b5722dc597581fdfd35df2c7
 			<div class="col-lg-12">
 				@if(Session::has('message'))
                 <div class="alert {{ Session::get('alert-class', 'alert-danger') }}">
