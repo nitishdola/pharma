@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert(['name' => 'Pharma Admin', 'username' => 'admin', 'password' => bcrypt('password#')]);
 
-        // DB::table('companies')->insert(['name' => 'Arion Healthcare']);
-        // DB::table('companies')->insert(['name' => 'Oval Organic']);
-        // DB::table('companies')->insert(['name' => 'SAC Pharma']);
+        DB::table('companies')->insert(['name' => 'Arion Healthcare']);
+        DB::table('companies')->insert(['name' => 'Oval Organic']);
+        DB::table('companies')->insert(['name' => 'SAC Pharma']);
     }
 }
