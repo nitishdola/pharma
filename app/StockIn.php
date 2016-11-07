@@ -6,18 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class StockIn extends Model
 {
-    protected $fillable = array('product_id', 'receive_date', 'unit_cost', 'quanity', 'total_cost');
+    protected $fillable = array('receive_date', 'receipt_number', 'party_name', 'party_address');
 	protected $table    = 'stock_ins';
     protected $guarded  = ['_token'];
     public static $rules = [
-        'product_id'		=> 'required|exists:products,id',
     	'receive_date'		=>  'required|date|date_format:Y-m-d',
-    	'unit_cost'	    	=>  'required|numeric',
-    	'quanity'			=>  'required|numeric',
-    	'total_cost'		=>  'required|numeric',
+    	'receipt_number'	=>  'required|max:15',
+    	'party_name'		=>  'required|max:50',
+    	'party_address'		=>  'required|max:100',
     ];
-
-    public function product() {
-        return $this->belongsTo('App\Product', 'product_id');
-    }
 }

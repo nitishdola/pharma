@@ -11,7 +11,7 @@
 	<div class="form-group {{ $errors->has('receipt_number') ? 'has-error' : ''}}">
 	  {!! Form::label('receipt_number', '', array('class' => 'col-md-2 control-label')) !!}
 	  <div class="col-md-5">
-	    {!! Form::text('receipt_number', null, ['class' => 'form-control col-md-6 required', 'id' => 'receipt_number',  'autocomplete' => 'off', 'required' => 'true']) !!}
+	    {!! Form::text('receipt_number', $receipt_number, ['class' => 'form-control col-md-6 required', 'readonly' => true, 'id' => 'receipt_number',  'autocomplete' => 'off', 'required' => 'true']) !!}
 	  </div>
 	  {!! $errors->first('receipt_number', '<span class="help-inline">:message</span>') !!}
 	</div>
