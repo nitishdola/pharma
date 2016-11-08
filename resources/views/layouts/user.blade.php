@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pharma Admin Dashboard</title>
+    <title>@if (trim($__env->yieldContent('pageTitle'))) @yield('pageTitle') @else Pharma Admin Dashboard @endif</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />

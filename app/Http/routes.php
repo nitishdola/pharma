@@ -74,4 +74,10 @@ Route::group(['prefix'=>'stock'], function() {
         'middleware' => ['auth'],
         'uses' => 'StockInController@store'
     ]);
+
+    Route::get('/receipt/{stock_in_id}', [
+        'as' => 'stock.receipt',
+        'middleware' => ['auth'],
+        'uses' => 'StockInController@view_bill'
+    ]);
 });
