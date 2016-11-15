@@ -18,6 +18,7 @@ class CreateStockinTable extends Migration
             $table->string('receipt_number',15);
             $table->string('party_name',50);
             $table->string('party_address',100);
+            $table->string('party_dl', 50);
             $table->tinyInteger('status', false, true)->default(1);
             $table->timestamps();
         });

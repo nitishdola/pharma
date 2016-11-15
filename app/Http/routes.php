@@ -17,7 +17,7 @@ Route::get('/', ['uses' => 'HomeController@index', 'as' => 'dashboard', 'middlew
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-
+Route::get('/logout',['uses' => 'AuthController@logout', 'as' => 'logout']);
 Route::group(['prefix'=>'company'], function() {
     Route::get('/create', [
         'as' => 'company.create',
@@ -79,5 +79,69 @@ Route::group(['prefix'=>'stock'], function() {
         'as' => 'stock.receipt',
         'middleware' => ['auth'],
         'uses' => 'StockInController@view_bill'
+    ]);
+
+    Route::get('/report', [
+        'as' => 'stock.report',
+        'middleware' => ['auth'],
+        'uses' => 'StockInController@report'
+    ]);
+
+    Route::get('/receive/view-all', [
+        'as' => 'stock.receive.index',
+        'middleware' => ['auth'],
+        'uses' => 'StockInController@index'
+    ]);
+});
+
+Route::group(['prefix'=>'stock-dispatch'], function() {
+    Route::get('/create', [
+        'as' => 'stock_dispatch.create',
+        'middleware' => ['auth'],
+        'uses' => 'StockOutController@create'
+    ]);
+
+    Route::post('/store', [
+        'as' => 'stock_dispatch.store',
+        'middleware' => ['auth'],
+        'uses' => 'StockOutController@store'
+    ]);
+
+    Route::get('/receipt/{stock_in_id}', [
+        'as' => 'stock_dispatch.receipt',
+        'middleware' => ['auth'],
+        'uses' => 'StockOutController@view_bill'
+    ]);
+    Route::get('/report', [
+        'as' => 'stock_dispatch.report',
+        'middleware' => ['auth'],
+        'uses' => 'StockOutController@report'
+    ]);
+
+    Route::get('/dispatch/view-all', [
+        'as' => 'stock.dispatch.index',
+        'middleware' => ['auth'],
+        'uses' => 'StockOutController@index'
+    ]);
+});
+
+
+Route::group(['prefix'=>'rest'], function() {
+    Route::get('/get_product_info', [
+        'as' => 'rest.get_product_info',
+        'uses' => 'RestController@get_product_info'
+    ]);
+});
+
+
+Route::group(['prefix'=>'excel'], function() {
+    Route::get('/stock-in/download', [
+        'as' => 'stock_in.excel',
+        'uses' => 'ExcelController@download_stock_receive'
+    ]);
+
+    Route::get('/stock-out/download', [
+        'as' => 'stock_out.excel',
+        'uses' => 'ExcelController@download_stock_send'
     ]);
 });

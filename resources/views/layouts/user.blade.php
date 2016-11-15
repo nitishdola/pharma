@@ -16,6 +16,8 @@
 
     <!-- MetisMenu CSS -->
     <link href="{{ asset('bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('dist/css/dataTables.responsive.css') }}" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/sb-admin-2.css') }}" rel="stylesheet">
@@ -83,12 +85,22 @@
         <script type="text/javascript" src="{{ asset('plugins/select2/select2.full.js') }}"></script>
 
         <script type="text/javascript" src="{{ asset('plugins/jquery.blockUI.js') }}"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="{{ asset('dist/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('dist/js/dataTables.bootstrap.min.js') }}"></script>
+        <script src="{{ asset('dist/js/dataTables.responsive.js') }}"></script>
+        
         
         <script>
         $(document).ready(function(){
             "use strict";
             $('.datepicker').Zebra_DatePicker();
             $('.select2').select2();
+            $('.datatable').DataTable({
+                responsive: true,
+                "bPaginate": false
+            });
         });
         </script>
         @yield('page_script')

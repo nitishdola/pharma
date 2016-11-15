@@ -29,6 +29,11 @@ $('#quanity').change(function() {
 
 @section('page_script')
 <script>
+
+$('.datepicker-years').Zebra_DatePicker({
+  view: 'years'
+});
+
 //load_sections();
 var item = 1;
 $(".select2").select2();
@@ -38,6 +43,9 @@ $('.add_more_item').click(function(e) {
 	$clone 			= $latest_tr.clone(true, true);
 	$latest_tr.after($clone);// console.log($clone.html());
 	$('select.select2').select2();
+	$('.datepicker-years').Zebra_DatePicker({
+  		view: 'years'
+	});
 	$clone.find(':text').val('');
 	$clone.find('.quanity').val('');
 	$clone.find('.unit_cost').val('');
@@ -65,7 +73,7 @@ function show_hide_item( item ) {
 $(".quanity").on("keyup", function() { 
 	var $this = $(this);
 	var quanity = $this.val();
-	$latest_tr 	= $('#stockin_table tr:last');
+	$latest_tr 	= $this.closest('tr');//$('#stockin_table tr:last');
 	var unit_cost = $latest_tr.find('.unit_cost').val();
 	//var $parent = $this.parents('.material_item');
 	

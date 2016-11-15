@@ -13,10 +13,9 @@
 
 @stop
 @section('content')
-<div class="col-lg-7">
+<div class="col-lg-12">
 
 @section('content')
-<h2>Add a Product</h2>
 <div class="col-lg-12">
 	<div class="widget-content">
 		{!! Form::open(array('route' => 'product.store', 'id' => 'product.store', 'class' => 'form-horizontal row-border')) !!}

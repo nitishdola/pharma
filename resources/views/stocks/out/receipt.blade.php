@@ -49,7 +49,9 @@
 						<th> Product Name </th>
 						<th> Batch Number </th>
 						<th> Expiry Date </th>
-						<th> Unit Cost </th>
+						<th> Free </th>
+						<th> Bill </th>
+						<th> MRP </th>
 						<th> Quantity </th>
 						<th> Total Cost </th>
 					</tr>
@@ -58,19 +60,37 @@
 					 	<td> {{ $v->product['name'] }} {{ $v->product['unit'] }}</td>
 					 	<td> {{ $v->batch_number }} </td>
 					 	<td> {{ $v->expiry_date }} </td>
+					 	<td> {{ $v->free }} </td>
 					 	<td> {{ $v->unit_cost }} </td>
+					 	<td> {{ $v->product['mrp'] }} </td>
 					 	<td> {{ $v->quanity }} </td>
 					 	<td> &#8377; {{ $v->total_cost }} </td>
 					 </tr>
 					@endforeach
 					
 					<tr>
-						<td colspan="5" align="right"><b>Total </b> : </td>
+						<td colspan="7" align="right"><b>Total </b> : </td>
 						<td> &#8377; {{ $total }}</td>
 					</tr>
+
+					<tr>
+						<td colspan="7" align="right"><b>A.Vate </b> : </td>
+						<td> {{ $info->avat }} %</td>
+					</tr>
+
+					<tr>
+						<td colspan="7" align="right"><b>Less Special </b> : </td>
+						<td> &#8377; {{ $info->special_discount }}</td>
+					</tr>
+
+					<tr>
+						<td colspan="7" align="right"><b>Grand Total </b> : </td>
+						<td> &#8377; {{ $grand_total }}</td>
+					</tr>
+
 					<tr>
 						<td colspan="3" align="right"><b>Total Payable in text</b> : </td>
-						<td colspan="2">{{ $total_in_text }}</td>
+						<td colspan="5">{{ ucwords($total_in_text) }}</td>
 					</tr>
 
 				</table>
@@ -87,7 +107,7 @@
 					</tr>
 
 					<tr>
-						<td>  {{ date('d/m/Y', strtotime($info->receive_date)) }} </td>
+						<td>  {{ date('d/m/Y', strtotime($info->dispatch_date)) }} </td>
 						<td>  {{ $info->receipt_number }}</td>
 					</tr>
 				</table>

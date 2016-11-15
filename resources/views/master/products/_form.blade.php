@@ -1,13 +1,3 @@
-
-<div class="form-group {{ $errors->has('company_id') ? 'has-error' : ''}}">
-  {!! Form::label('company_id', 'Select Company', array('class' => 'col-md-3 control-label')) !!}
-  <div class="col-md-9">
-    {!! Form::select('company_id', $companies, null, ['class' => 'form-control required', 'id' => 'company_id', 'placeholder' => 'Select Company', 'autocomplete' => 'off', 'required' => 'true']) !!}
-  </div>
-  {!! $errors->first('company_id', '<span class="help-inline">:message</span>') !!}
-</div>
-
-
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
   {!! Form::label('name', 'Product Name', array('class' => 'col-md-3 control-label')) !!}
   <div class="col-md-9">

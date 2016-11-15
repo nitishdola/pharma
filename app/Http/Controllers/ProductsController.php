@@ -10,8 +10,7 @@ use App\Product, App\Company;
 class ProductsController extends Controller
 {
     public function create() {
-    	$companies    = Company::whereStatus(1)->orderBy('name', 'DESC')->lists('name', 'id')->toArray();
-	    return view('master.products.create', compact('companies'));
+	    return view('master.products.create');
     }
 
     public function store(Request $request) { 
@@ -27,7 +26,7 @@ class ProductsController extends Controller
     }
 
     public function index() {
-        $products = Product::whereStatus(1)->with('company')->paginate(30);
+        $products = Product::whereStatus(1)->orderBy('name')->with('company')->paginate(30);
         return view('master.products.index', compact('products'));
     }
 

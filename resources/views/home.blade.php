@@ -6,59 +6,133 @@
 </li>
 @stop
 
-@section('page_title')
-    <h3> Dashboard</h3>
-@stop
-
 @section('content')
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-8 col-md-12" style="background: #D8E0F3; padding:13px">
         <div class="statbox widget box box-shadow">
             <div class="widget-content">
-                <div class="visual cyan">
-                    <div class="statbox-sparkline">30,20,15,30,22,25,26,30,27</div>
+                <div class="title"><h3>Recent Stock In Bills</h3></div>
+                <div class="value"></div>
+                @if(count($stock_in_bills))
+
+                <table width="100%" class="table datatable table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                        <th>Sl No</th>
+                        <th>Company </th>
+                        <th>Bill Date</th>
+                        <th>Receipt Number</th>
+                        <th>Party Name</th>
+                        <th>Party Address</th>
+                        <th>Party DL</th>
+                        <th>View Details/Print</th>
+                    </thead>
+
+                    <tbody>
+                        @foreach($stock_in_bills as $k => $v)
+                        <tr>
+                            <td> {{ $k+1 }} </td>
+                            <td> {{ $v->company['name'] }} </td>
+                            <td> {{ date('d-m-Y', strtotime($v->receive_date)) }} </td>
+                            <td> {{ $v->receipt_number }} </td>
+                            <td> {{ $v->party_name }} </td>
+                            <td> {{ $v->party_address }} </td>
+                            <td> {{ $v->party_dl }} </td>
+                            <td> 
+                                <a href="{{ route('stock.receipt', $v->id) }}">View/Print</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <a href="{{ route('stock.report') }}" class="btn btn-success">View All Stock-in Bills</a>
+                @else
+                <div class="alert alert-warning">
+                  <strong>No Bills Found !</strong> 
                 </div>
-                <div class="title">Clients</div>
-                <div class="value">4 501</div>
-                <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
+                @endif
             </div>
         </div> <!-- /.smallstat -->
     </div> <!-- /.col-md-3 -->
 
-    <div class="col-sm-6 col-md-3">
+    <div style="margin-top:20px;">&nbsp;</div>
+    <div class="col-sm-8 col-md-12" style="background: #F0EBAE; padding:13px">
         <div class="statbox widget box box-shadow">
             <div class="widget-content">
-                <div class="visual green">
-                    <div class="statbox-sparkline">20,30,30,29,22,15,20,30,32</div>
+                <div class="title"><h3>Recent Stock dispatch Bills</h3></div>
+                <div class="value"></div>
+                @if(count($stock_out_bills))
+
+                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                        <th>Sl No</th>
+                        <th>Company </th>
+                        <th>Bill Date</th>
+                        <th>Receipt Number</th>
+                        <th>Party Name</th>
+                        <th>Party Address</th>
+                        <th>Party DL</th>
+                        <th>View Details/Print</th>
+                    </thead>
+
+                    <tbody>
+                        @foreach($stock_out_bills as $k => $v)
+                        <tr>
+                            <td> {{ $k+1 }} </td>
+                            <td> {{ $v->company['name'] }} </td>
+                            <td> {{ date('d-m-Y', strtotime($v->dispatch_date)) }} </td>
+                            <td> {{ $v->receipt_number }} </td>
+                            <td> {{ $v->party_name }} </td>
+                            <td> {{ $v->party_address }} </td>
+                            <td> {{ $v->party_dl }} </td>
+                            <td> 
+                                <a href="{{ route('stock.receipt', $v->id) }}">View/Print</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <a href="{{ route('stock_dispatch.report') }}" class="btn btn-success">View All Stock-dispatch Bills</a>
+                @else
+                <div class="alert alert-warning">
+                  <strong>No Bills Found !</strong> 
                 </div>
-                <div class="title">Feedbacks</div>
-                <div class="value">714</div>
-                <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
+                @endif
             </div>
         </div> <!-- /.smallstat -->
     </div> <!-- /.col-md-3 -->
-
-    <div class="col-sm-6 col-md-3 hidden-xs">
+    <div style="margin-top:20px;">&nbsp;</div>
+    <div class="col-sm-8 col-md-12" style="background: #F8D5A8; padding:13px">
         <div class="statbox widget box box-shadow">
             <div class="widget-content">
-                <div class="visual yellow">
-                    <i class="icon-dollar"></i>
-                </div>
-                <div class="title">Total Profit</div>
-                <div class="value">$42,512.61</div>
-                <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
-            </div>
-        </div> <!-- /.smallstat -->
-    </div> <!-- /.col-md-3 -->
+                <div class="title"><h3>Available Products</h3></div>
+                <div class="value"></div>
+                @if(count($products))
 
-    <div class="col-sm-6 col-md-3 hidden-xs">
-        <div class="statbox widget box box-shadow">
-            <div class="widget-content">
-                <div class="visual red">
-                    <i class="icon-user"></i>
-                </div>
-                <div class="title">Visitors</div>
-                <div class="value">2 521 719</div>
-                <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
+                <table width="100%" class="table datatable table-bordered" id="dataTables-example">
+                    <thead>
+                        <th>Sl No</th>
+                        <th>Name</th>
+                        <th>Unit</th>
+                        <th>MRP</th>
+                        <th>Trade</th>
+                        <th>Stock</th>
+                    </thead>
+
+                    <tbody>
+                        @foreach($products as $k => $v)
+                        <tr>
+                            <td> {{ $k+1 }} </td>
+                            <td> {{ $v->name }} </td>
+                            <td> {{ $v->unit }} </td>
+                            <td> {{ $v->mrp }} </td>
+                            <td> {{ $v->trade }} </td>
+                            <td> {{ $v->stock_in_hand }} </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @else
+                <h4>No Products Found ! </h4>
+                @endif
             </div>
         </div> <!-- /.smallstat -->
     </div> <!-- /.col-md-3 -->

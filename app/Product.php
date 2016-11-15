@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 
-    protected $fillable = array('company_id', 'name', 'unit', 'mrp', 'trade', 'stock_in_hand');
+    protected $fillable = array('name', 'unit', 'mrp', 'trade', 'stock_in_hand');
 	protected $table    = 'products';
     protected $guarded  = ['_token'];
     public static $rules = [
-        'company_id'=> 'required|exists:companies,id',
     	'name'		=>  'required|max:255',
     	'unit'	    =>  'required|max:255',
     	'mrp'		=>  'required|max:255',

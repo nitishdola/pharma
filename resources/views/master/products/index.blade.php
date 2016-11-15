@@ -25,24 +25,22 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Company</th>
 						<th>Product Name</th>
-						<th class="hidden-xs">Quantity</th>
 						<th>MRP</th>
 						<th>Trade</th>
 						<th>Stock</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($products as $k => $v)
 					<tr>
 						<td> {{ (($products->currentPage() - 1 ) * $products->perPage() ) + $count + $k }}</td>
-						<td>{{ $v->company['name'] }}</td>
 						<td>{{ $v->name }}</td>
-						<td class="hidden-xs">{{ $v->quantity }}</td>
 						<td>{{ $v->mrp }}</td>
 						<td>{{ $v->trade }}</td>
 						<td>{{ $v->stock_in_hand }}</td>
+						<td> <a href="{{ route('product.edit', $v->id) }}">EDIT</a> </td>
 					</tr>
 					
 					@endforeach

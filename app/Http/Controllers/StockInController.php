@@ -6,25 +6,54 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use DB, Validator, Redirect, Auth, Crypt;
-use App\Product, App\StockIn,App\StockInProduct;
+use App\Product, App\Company, App\StockIn,App\StockInProduct;
 
 class StockInController extends Controller
 {
+    public function index(Request $request) {
+        $where = [];
+        $data_from  = '1970-01-01';
+        $data_to    = date('Y-m-d');
+
+        if($request->company_id) {
+
+        }
+
+        if($request->receipt_number) {
+            
+        }
+
+        if($request->data_from) {
+            $data_from = $request->data_from;
+        } 
+
+        if($request->data_to) {
+            $data_to = $request->data_to;
+        }    
+
+        $stock_in_bills = StockIn::where($where)->paginate(50);
+
+        return view('stocks.in.index', compact('stock_in_bills'));
+    }
+
+
     public function receive() {
+        $companies    = Company::whereStatus(1)->orderBy('name', 'DESC')->lists('name', 'id')->toArray();
+
     	$products    = ['0'=>'Select Product'] + Product::whereStatus(1)->orderBy('name', 'DESC')->lists('name', 'id')->toArray();
         $last_receipt_number = StockIn::orderBy('id', 'DESC')->first();
 
         if($last_receipt_number) {
             $last_receipt_number = $last_receipt_number->receipt_number;
-            $last_receipt_arr = explode('|', $last_receipt_number);
+            $last_receipt_arr = explode('/', $last_receipt_number);
             $digit = $last_receipt_arr[2]+1;
         }else{
             $digit = 1;
         }
 
-        $receipt_number = 'STOCK|RCV|'.$digit;
+        $receipt_number = 'SDD/'.$digit.'/'.date('y');
 
-	    return view('stocks.in.receive', compact('products', 'receipt_number'));
+	    return view('stocks.in.receive', compact('products', 'receipt_number', 'companies'));
     }
 
     public function store(Request $request) { 
@@ -43,6 +72,10 @@ class StockInController extends Controller
             for ($i=0; $i < count($request->product_id) ; $i++) {
 
                 $data['product_id'] = $request->product_id[$i];
+
+                $data['expiry_date'] = $request->expiry_date[$i];
+                $data['batch_number'] = $request->batch_number[$i];
+
                 $data['unit_cost']  = $request->unit_cost[$i];
                 $data['quanity']    = $request->quanity[$i];
                 $data['total_cost'] = $request->total_cost[$i];
@@ -89,6 +122,33 @@ class StockInController extends Controller
         return view('stocks.in.receipt', compact('info', 'products', 'total', 'total_in_text'));
     }
 
+    public function report(Request $request) {
+        $where = [];
+
+        $receive_date_from = '1970-01-01';
+        $receive_date_to   = date('Y-m-d');
+
+        $party_name = ' ';
+
+        if($request->receive_date_from != '') {
+            $receive_date_from = $request->receive_date_from;
+        } 
+
+        if($request->receive_date_to != '') {
+            $receive_date_to = $request->receive_date_to;
+        }
+
+        if($request->receipt_number != '') {
+            $where['receipt_number'] = $request->receipt_number;
+        }
+
+        if($request->party_name != '') {
+            $party_name = $request->party_name;
+        }
+
+        $results = StockIn::where($where)->where('receive_date', '>=', $receive_date_from)->where('receive_date', '<=', $receive_date_to)->where('party_name', 'LIKE', '%'.$party_name.'%')->orderBy('receive_date', 'DESC')->paginate(30);
+        return view('stocks.in.report', compact('results'));
+    }
 
     private function convertNumber($number)
     {
@@ -313,4 +373,6 @@ class StockInController extends Controller
                 return "nine";
         }
     }
+
+
 }
