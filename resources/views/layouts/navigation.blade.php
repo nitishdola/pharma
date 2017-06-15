@@ -31,10 +31,10 @@
             <ul class="nav" id="side-menu">
                 
                 <li>
-                    <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="{{ route('dashboard') }}"> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Product<span class="fa arrow"></span></a>
+                    <a href="#"> Product<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ route('product.create') }}">Add New</a>
@@ -46,25 +46,25 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Stock Receive<span class="fa arrow"></span></a>
+                    <a href="#"> Stock Purchase<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{{ route('stock.receive') }}">Receive Stock</a>
+                            <a href="{{ route('stock.receive') }}">Purchase Stock</a>
                         </li>
                         <li>
-                            <a href="{{ route('stock.report') }}">Receive Report</a>
+                            <a href="{{ route('stock.report') }}">Purchase Stock Report</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Stock Dispatch<span class="fa arrow"></span></a>
+                    <a href="#"> Stock Sell<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{{ route('stock_dispatch.create') }}">Dispatch Stock</a>
+                            <a href="{{ route('stock_dispatch.create') }}">Sale Stock</a>
                         </li>
                         <li>
-                            <a href="{{ route('stock_dispatch.report') }}">Dispatch Stock Report</a>
+                            <a href="{{ route('stock_dispatch.report') }}">Sale Stock Report</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

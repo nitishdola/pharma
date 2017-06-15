@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <div class="col-sm-8 col-md-12" style="background: #D8E0F3; padding:13px">
+    <div class="col-sm-8 col-md-12" style="background: #F3F1F1; padding:13px">
         <div class="statbox widget box box-shadow">
             <div class="widget-content">
                 <div class="title"><h3>Recent Stock In Bills</h3></div>
@@ -54,7 +54,7 @@
     </div> <!-- /.col-md-3 -->
 
     <div style="margin-top:20px;">&nbsp;</div>
-    <div class="col-sm-8 col-md-12" style="background: #F0EBAE; padding:13px">
+    <div class="col-sm-8 col-md-12" style="background: #F6F1F1; padding:13px">
         <div class="statbox widget box box-shadow">
             <div class="widget-content">
                 <div class="title"><h3>Recent Stock dispatch Bills</h3></div>
@@ -84,7 +84,7 @@
                             <td> {{ $v->party_address }} </td>
                             <td> {{ $v->party_dl }} </td>
                             <td> 
-                                <a href="{{ route('stock.receipt', $v->id) }}">View/Print</a>
+                                <a href="{{ route('stock_dispatch.receipt', $v->id) }}">View/Print</a>
                             </td>
                         </tr>
                         @endforeach
@@ -100,7 +100,7 @@
         </div> <!-- /.smallstat -->
     </div> <!-- /.col-md-3 -->
     <div style="margin-top:20px;">&nbsp;</div>
-    <div class="col-sm-8 col-md-12" style="background: #F8D5A8; padding:13px">
+    <div class="col-sm-8 col-md-12" style="background: #ECECEC; padding:13px">
         <div class="statbox widget box box-shadow">
             <div class="widget-content">
                 <div class="title"><h3>Available Products</h3></div>

@@ -15,7 +15,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('mrp') ? 'has-error' : ''}}">
-  {!! Form::label('mrp', 'MRP ', array('class' => 'col-md-3 control-label')) !!}
+  {!! Form::label('mrp', 'MRP Rate', array('class' => 'col-md-3 control-label')) !!}
   <div class="col-md-4">
     {!! Form::number('mrp', null, ['class' => 'form-control required', 'id' => 'mrp', 'placeholder' => 'MRP', 'step' => '0.01', 'autocomplete' => 'off', 'required' => 'true']) !!}
   </div>
@@ -23,7 +23,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('trade') ? 'has-error' : ''}}">
-  {!! Form::label('trade', 'Trade ', array('class' => 'col-md-3 control-label')) !!}
+  {!! Form::label('trade', 'Trade Price', array('class' => 'col-md-3 control-label')) !!}
   <div class="col-md-4">
     {!! Form::number('trade', null, ['class' => 'form-control required', 'id' => 'trade', 'placeholder' => 'Trade', 'step' => '0.01', 'autocomplete' => 'off', 'required' => 'true']) !!}
   </div>

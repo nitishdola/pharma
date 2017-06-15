@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StockInProduct extends Model
 {
-    protected $fillable = array('stock_in_id', 'product_id', 'batch_number', 'expiry_date', 'unit_cost', 'quanity', 'total_cost');
+    protected $fillable = array('stock_in_id', 'product_id', 'batch_number', 'expiry_date', 'unit_cost', 'mrp', 'quanity', 'total_cost');
 	protected $table    = 'stock_in_products';
     protected $guarded  = ['_token'];
     public static $rules = [

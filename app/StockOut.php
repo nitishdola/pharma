@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class StockOut extends Model
 {
-    protected $fillable = array('company_id', 'dispatch_date', 'receipt_number', 'party_name', 'party_dl', 'party_address', 'avat', 'special_discount');
+    protected $fillable = array( 'dispatch_date', 'receipt_number', 'party_name', 'party_dl', 'party_address', 'avat', 'special_discount');
 	protected $table    = 'stock_outs';
     protected $guarded  = ['_token'];
     public static $rules = [
-        'company_id'        =>  'required|exists:companies,id',
+       // 'company_id'        =>  'required|exists:companies,id',
     	'dispatch_date'		=>  'required|date|date_format:Y-m-d',	
     	'receipt_number'	=>  'required|max:15',
     	'party_name'		=>  'required|max:50',

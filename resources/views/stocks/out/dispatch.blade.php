@@ -1,5 +1,5 @@
 @extends('layouts.user')
-@section('page_title') Dispatch Stock @stop
+@section('page_title') Sell Stock @stop
 
 @section('content')
 <div class="col-md-12">
@@ -42,7 +42,8 @@ $('.add_more_item').click(function(e) {
 	  view: 'years'
 	});
 	$clone.find(':text').val('');
-	$clone.find('.quanity').val('');
+	$clone.find('.quanity').val(''); 
+	$clone.find('.total_qty').val('');
 	$clone.find('.unit_cost').val('');
 	$clone.find('.total_cost').val('');
 	$clone.find('.mrp').val('');
@@ -111,6 +112,18 @@ $(".quanity").on("keyup", function() {
 	$latest_tr 	= $this.closest('tr');
 	var unit_cost = $latest_tr.find('.unit_cost').val();
 	$latest_tr.find('.total_cost').val(quanity*unit_cost);
+
+	$latest_tr.find('.total_qty').val(quanity);
+});
+
+
+$(".free").on("keyup", function() { 
+	var $this = $(this);
+	$latest_tr 	= $this.closest('tr');
+	var quantity = $latest_tr.find('.quanity').val(); 
+	var free = $this.val();
+	var ttlQty = parseInt(free)+parseInt(quantity);
+	$latest_tr.find('.total_qty').val(ttlQty);
 });
 
 $(".flat_rate").on("keyup", function() { 

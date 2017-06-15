@@ -35,46 +35,61 @@ class StockOutController extends Controller
     	$message = '';
         $data = $request->all();
         $count = 0;
-
+		
+		//calculate special discount , which is equal to VAT
+		$ttl_cst = 0;
+		if(count($request->quanity)) {
+            for ($i=0; $i < count($request->quanity) ; $i++) {
+				if($request->product_id[$i] != 0 && $request->quanity[$i] != ''){
+					$ttl_cst += $request->total_cost[$i];
+				}
+			}
+		}
+		$vat = $request->avat;
+		$spcl_dsc = ($vat/100)*$ttl_cst;
+		
+		$data['special_discount'] = $spcl_dsc;
         $validator = Validator::make($data, StockOut::$rules); 
         if ($validator->fails())  return Redirect::back();
- 
+        
         DB::beginTransaction(); 
         $stock_out = StockOut::create($data);
-        $data['stock_out_id'] = $stock_out->id;
-        if(count($request->product_id)) {
-            for ($i=0; $i < count($request->product_id) ; $i++) {
-                $data['product_id'] = $request->product_id[$i];
-                $data['expiry_date'] = $request->expiry_date[$i];
-                $data['batch_number'] = $request->batch_number[$i];
-                $data['quanity']    = $request->quanity[$i];
-                $data['free']  = $request->free[$i];
-                $data['unit_cost']  = $request->unit_cost[$i];
-                $data['flat_rate']  = $request->flat_rate[$i];
-                $data['total_cost'] = $request->total_cost[$i];
+        $data2['stock_out_id'] = $stock_out->id;
+        if(count($request->quanity)) {
+            for ($i=0; $i < count($request->quanity) ; $i++) {
+                if($request->product_id[$i] != 0 && $request->quanity[$i] != ''){
+                    $data2['product_id'] = $request->product_id[$i];
+                    $data2['expiry_date'] = $request->expiry_date[$i];
+                    $data2['batch_number'] = $request->batch_number[$i];
+                    $data2['quanity']    = $request->quanity[$i];
+                    $data2['free']  = $request->free[$i];
+                    $data2['unit_cost']  = $request->unit_cost[$i];
+                    $data2['mrp']  = $request->mrp[$i];
+                    $data2['flat_rate']  = $request->flat_rate[$i];
+                    $data2['total_cost'] = $request->total_cost[$i];
+                    
+                    $validator = Validator::make($data2, StockOutProduct::$rules);
+                    if ($validator->fails()) return Redirect::back();
 
-                $validator = Validator::make($data, StockOutProduct::$rules);
-                if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
+                    if(StockOutProduct::create($data2)) {
+                        //update product table
+                        $product = Product::findOrFail($data2['product_id']);
 
-                if(StockOutProduct::create($data)) {
-                    //update product table
-                    $product = Product::findOrFail($data['product_id']);
+                        $current_stock = $product->stock_in_hand;
 
-                    $current_stock = $product->stock_in_hand;
+                        $updated_stock = $current_stock - $data2['quanity'];
 
-                    $updated_stock = $current_stock - $data['quanity'];
+                        if($data2['free'] != '' || $data2['free'] != 0) {
+                        	$updated_stock = $current_stock - $data2['free'];
+                        }
 
-                    if($data['free'] != '' || $data['free'] != 0) {
-                    	$updated_stock = $current_stock - $data['free'];
+                        $product->stock_in_hand = $updated_stock;
+
+                        $product->save();
+
+                        $count++;
                     }
-
-                    $product->stock_in_hand = $updated_stock;
-
-                    $product->save();
-
-                    $count++;
                 }
-
 
             }
             
@@ -107,7 +122,7 @@ class StockOutController extends Controller
         $grand_total = number_format((float)$grand_total, 2, '.', '');
 
         $total_in_text = $this->convertNumber($grand_total);
-        return view('stocks.out.receipt', compact('info', 'products', 'total', 'total_in_text', 'grand_total'));
+        return view('stocks.out.receipt', compact('info', 'products', 'total', 'total_in_text', 'grand_total', 'vat'));
     }
 
     public function report(Request $request) {

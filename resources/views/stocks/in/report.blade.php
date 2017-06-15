@@ -36,6 +36,22 @@
 
 			</div>
 
+
+			<div class="row">
+				<div class="form-group">
+				  {!! Form::label('party_bill_number', '', array('class' => 'col-md-2 control-label')) !!}
+				  <div class="col-md-3">
+				    {!! Form::text('party_bill_number', null, ['class' => 'form-control col-md-6', 'id' => 'party_bill_number', 'placeholder' => 'All',  'autocomplete' => 'off',]) !!}
+				  </div>
+				 
+				  {!! Form::label('party_bill_date', '', array('class' => 'col-md-2 control-label')) !!}
+				  <div class="col-md-3">
+				    {!! Form::text('party_bill_date', null, ['class' => 'datepicker form-control col-md-6', 'id' => 'party_bill_date', 'placeholder' => 'All',  'autocomplete' => 'off',]) !!}
+				  </div>
+				</div>
+
+			</div>
+
 			<div class="row">
 				{!! Form::label('', '', array('class' => 'col-md-2 control-label')) !!}
 				{!! Form:: submit('Search', ['class' => 'btn btn-success']) !!}

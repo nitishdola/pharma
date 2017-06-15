@@ -9,20 +9,16 @@
 	</div>
 	
 	<div class="form-group {{ $errors->has('receive_date') ? 'has-error' : ''}}">
-	  {!! Form::label('receive_date', 'Stock Receive Date', array('class' => 'col-md-2 control-label')) !!}
+	  {!! Form::label('receive_date', 'Stock Receive Date and Invoice Number', array('class' => 'col-md-2 control-label')) !!}
 	  <div class="col-md-3">
 	    {!! Form::text('receive_date', date('Y-m-d'), ['class' => 'datepicker form-control col-md-6 required', 'id' => 'receive_date',  'autocomplete' => 'off', 'required' => 'true']) !!}
 	  </div>
-	  {!! $errors->first('receive_date', '<span class="help-inline">:message</span>') !!}
-	</div>
 
-
-	<div class="form-group {{ $errors->has('receipt_number') ? 'has-error' : ''}}">
-	  {!! Form::label('receipt_number', '', array('class' => 'col-md-2 control-label')) !!}
-	  <div class="col-md-5">
+	  <div class="col-md-3">
 	    {!! Form::text('receipt_number', $receipt_number, ['class' => 'form-control col-md-6 required', 'id' => 'receipt_number',  'autocomplete' => 'off', 'required' => 'true']) !!}
 	  </div>
-	  {!! $errors->first('receipt_number', '<span class="help-inline">:message</span>') !!}
+
+	  {!! $errors->first('receive_date', '<span class="help-inline">:message</span>') !!}
 	</div>
 
 	<div class="form-group {{ $errors->has('party_name') ? 'has-error' : ''}}">
@@ -33,6 +29,19 @@
 
 	  <div class="col-md-3">
 	    {!! Form::text('party_dl', null, ['class' => 'form-control col-md-6', 'id' => 'party_dl',  'autocomplete' => 'off', 'placeholder' => 'Party DL']) !!}
+	  </div>
+
+	  {!! $errors->first('party_name', '<span class="help-inline">:message</span>') !!}
+	</div>
+
+	<div class="form-group {{ $errors->has('party_name') ? 'has-error' : ''}}">
+	  {!! Form::label('Party Bill Number Date', '', array('class' => 'col-md-2 control-label')) !!}
+	  <div class="col-md-3">
+	    {!! Form::text('party_bill_number', null, ['class' => 'form-control col-md-6 required', 'id' => 'party_bill_number',  'autocomplete' => 'off', 'required' => 'true', 'placeholder' => 'Party Bill Number']) !!}
+	  </div>
+
+	  <div class="col-md-3">
+	    {!! Form::text('party_bill_date', null, ['class' => 'datepicker form-control col-md-6', 'id' => 'party_bill_date',  'autocomplete' => 'off', 'placeholder' => 'Party Bill Date']) !!}
 	  </div>
 
 	  {!! $errors->first('party_name', '<span class="help-inline">:message</span>') !!}
@@ -50,9 +59,15 @@
 
 <div class="col-md-12">
 <hr>
-<h3>Products form </h3>
+        <style>
+.tableScroll{
+    width:1200px;
+    max-width:19000px;
+    overflow-x:scroll;
+}
+</style>
 
-	<table class="table table-bordered" id="stockin_table">
+	<table class="table table-bordered tableScroll" id="stockin_table">
 	  <thead>
 	      <tr>
 	        <th>
@@ -68,15 +83,19 @@
 	        </th>
 
 	        <th>
-	          Units Cost
+	          Unit Price(Purchase Rate)
 	        </th>
+
+	<th>
+	          MRP
+	        </th>	
 
 	        <th>
 	          Quantity
 	        </th>
 
 	        <th>
-	          Total Cost
+	          Total Amount
 	        </th>
 
 	      </tr>
@@ -99,7 +118,11 @@
 	  			</td>
 
 	  			<td>
-	  				{!! Form::number('unit_cost[]', null, ['class' => 'unit_cost form-control col-md-6 required', 'id' => 'unit_cost', 'step' => '0.01',  'autocomplete' => 'off',  'placeholder' => 'Unit Cost']) !!}
+	  				{!! Form::number('unit_cost[]', null, ['class' => 'unit_cost form-control col-md-6 required', 'id' => 'unit_cost', 'step' => '0.01',  'autocomplete' => 'off',  'placeholder' => 'Unit Price']) !!}
+	  			</td>
+
+<td>
+	  				{!! Form::number('mrp[]', null, ['class' => 'mrp form-control col-md-6 required', 'id' => 'mrp', 'step' => '0.01',  'autocomplete' => 'off',  'placeholder' => 'MRP']) !!}
 	  			</td>
 
 	  			<td>
@@ -107,7 +130,7 @@
 	  			</td>
 
 	  			<td>
-	  				{!! Form::text('total_cost[]', null, ['class' => 'total_cost form-control col-md-6 required', 'id' => 'total_cost',  'autocomplete' => 'off', 'placeholder' => 'Total Cost']) !!}
+	  				{!! Form::text('total_cost[]', null, ['class' => 'total_cost form-control col-md-6 required', 'id' => 'total_cost',  'autocomplete' => 'off', 'placeholder' => 'Total Amount']) !!}
 	  			</td>
 	  		</tr>
 	  		@endfor

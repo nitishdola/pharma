@@ -46,7 +46,7 @@ class StockInController extends Controller
         if($last_receipt_number) {
             $last_receipt_number = $last_receipt_number->receipt_number;
             $last_receipt_arr = explode('/', $last_receipt_number);
-            $digit = $last_receipt_arr[2]+1;
+            $digit = $last_receipt_arr[1]+1;
         }else{
             $digit = 1;
         }
@@ -58,22 +58,9 @@ class StockInController extends Controller
 
     public function store(Request $request) { 
     	$message = '';
-        
+        $data = $request->all();
         $count = 0;
-		
-		$data = [];
-        
-        $data['company_id']     = $request->company_id;
-        $data['receive_date']   = $request->receive_date;
-        $data['receipt_number'] = $request->receipt_number;
-        $data['party_name']     = $request->party_name;
-        $data['party_address']  = $request->party_address;
-        $data['party_dl']       = $request->party_dl;
-        $data['party_bill_number']  = $request->party_bill_number;
-        $data['party_bill_date']    = $request->party_bill_date;
-		
-		//dd($data);
-		
+
         $validator = Validator::make($data, StockIn::$rules);
         if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
 
@@ -90,9 +77,7 @@ class StockInController extends Controller
                     $data['batch_number'] = $request->batch_number[$i];
 
                     $data['unit_cost']  = $request->unit_cost[$i];
-					
-					$data['mrp']  = $request->mrp[$i];
-					
+					$data['mrp']  		= $request->mrp[$i];
                     $data['quanity']    = $request->quanity[$i];
                     $data['total_cost'] = $request->total_cost[$i];
 

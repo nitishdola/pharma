@@ -41,42 +41,35 @@
 
 	<div class="form-group {{ $errors->has('avat') ? 'has-error' : ''}}">
 	  {!! Form::label('avat', 'AVAT and Special Discount', array('class' => 'col-md-2 control-label')) !!}
-	  <div class="col-md-2 col-sm-5">
+	  <div class="col-md-2">
 	    {!! Form::number('avat', null, ['class' => 'form-control col-md-6 required', 'id' => 'avat',  'autocomplete' => 'off', 'step' => '0.01', 'required' => 'true', 'placeholder' => 'AVAT']) !!}
 	  </div>
 	  <div class="col-md-1">%</div>
-	  <!--<div class="col-md-3">
+	  <div class="col-md-3">
 	    {!! Form::number('special_discount ', null, ['class' => 'form-control col-md-6', 'id' => 'special_discount ', 'step' => '0.01',  'autocomplete' => 'off', 'placeholder' => 'Special Discount in Rupees']) !!}
-	  </div>-->
+	  </div>
 
 	  {!! $errors->first('party_name', '<span class="help-inline">:message</span>') !!}
 	</div>
 
 </div>
 
-<div class="col-mds-12">
+<div class="col-md-12">
 <hr>
-<style>
-.tableScroll{
-    width:1200px;
-    max-width:19000px;
-    overflow-x:scroll;
-}
-</style>
-	<table class="table tableScroll table-nonfluid table-bordered table-condensed" id="stockout_table">
+	<table class="table table-bordered table-condensed" id="stockout_table">
 	  <thead>
 	      <tr>
 	        <th>
 	          Product 
 	        </th>
 
-	        <th width="10%">
-	          Bill Qty
+	        <th>
+	          Bill Quantity
 	        </th>
 
 	        <th>Free </th>
 
-	        <th>Total Qty </th>
+	        <th>Total Quantity </th>
 
 	        <th>
 	        	Expiry Date
@@ -108,11 +101,11 @@
 	  			</td>
 
 	  			<td>
-	  				{!! Form::text('quanity[]', null, ['class' => 'quanity form-control col-md-6 required', 'id' => 'quanity',  'autocomplete' => 'off',  'placeholder' => 'Quantity']) !!}
+	  				{!! Form::number('quanity[]', null, ['class' => 'quanity form-control col-md-6 required', 'id' => 'quanity',  'autocomplete' => 'off',  'placeholder' => 'Quantity']) !!}
 	  			</td>
 
 	  			<td>
-	  				{!! Form::text('free[]', 0, ['class' => 'free form-control col-md-6 col-sm-8 required', 'id' => 'free',  'autocomplete' => 'off', 'placeholder' => 'Free']) !!}
+	  				{!! Form::number('free[]', 0, ['class' => 'free form-control col-md-6 required', 'id' => 'free',  'autocomplete' => 'off', 'placeholder' => 'Free']) !!}
 	  			</td>
 
 	  			<td>
@@ -130,15 +123,15 @@
 	  		
 
 	  			<td>
-	  				{!! Form::text('mrp[]', null, ['class' => 'mrp form-control col-md-6 required', 'id' => 'mrp', 'step' => '0.01',  'autocomplete' => 'off',  'placeholder' => 'MRP']) !!}
+	  				{!! Form::number('mrp[]', null, ['class' => 'mrp form-control col-md-6 required', 'id' => 'mrp', 'step' => '0.01',  'autocomplete' => 'off',  'placeholder' => 'MRP']) !!}
 	  			</td>
 
 	  			<td>
-	  				{!! Form::text('unit_cost[]', null, ['class' => 'unit_cost form-control col-md-6 required', 'id' => 'unit_cost', 'step' => '0.01',  'autocomplete' => 'off',  'placeholder' => 'Unit Cost']) !!}
+	  				{!! Form::number('unit_cost[]', null, ['class' => 'unit_cost form-control col-md-6 required', 'id' => 'unit_cost', 'step' => '0.01',  'autocomplete' => 'off',  'placeholder' => 'Unit Cost']) !!}
 	  			</td>
 
 	  			<td>
-	  				{!! Form::text('flat_rate[]', null, ['class' => 'flat_rate form-control col-md-6 required', 'id' => 'free',  'autocomplete' => 'off','placeholder' => 'Flat rate']) !!}
+	  				{!! Form::number('flat_rate[]', null, ['class' => 'flat_rate form-control col-md-6 required', 'id' => 'free',  'autocomplete' => 'off','placeholder' => 'Flat rate']) !!}
 	  			</td>
 
 	  			
